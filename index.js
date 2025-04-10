@@ -1,10 +1,17 @@
 import express, { json } from "express";
-import { userRouter } from "./routes/user.js";
 import { orderRouter } from "./routes/order.js";
-const port = 8088;
-const app = express();
-app.use(json());
+import { userRouter } from "./routes/user.js";
+import dotenv from "dotenv";
+import cors from "cors";
 
+dotenv.config();
+const port = process.env.PORT;
+
+const app = express();
+
+let users = [];
+app.use(json());
+app.use(cors());
 app.use("/user", userRouter);
 app.use("/order", orderRouter);
 

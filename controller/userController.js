@@ -1,10 +1,13 @@
-export const createUser = (req, res) => {
-  const { username, gender, age, email } = req.body;
+import { v4 as uuidv4 } from "uuid";
+let users = [];
 
-  const user = user.find((user) => user.email === email);
+export const createUser = (req, res) => {
+  const { username, gender, age, email, password } = req.body;
+
+  const user = users.find((user) => user.email === email);
 
   if (user) {
-    return response
+    return responseå
       .send({
         success: false,
         message: "email already taken",
@@ -12,8 +15,9 @@ export const createUser = (req, res) => {
       .end();
   }
 
-  username.push({
+  users.push({
     username,
+    password,
     gender,
     age,
     email,
